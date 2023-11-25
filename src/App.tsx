@@ -1,37 +1,21 @@
 import './App.css'
 import axios from 'axios'
-import Dice from './dice';
-import { useEffect, useState } from 'react'
+import Dice from './DiceComp/Dice';
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
-
-interface movieData {
-	title: string;
-	poster: string;
-}
+import movieData from './interfaces/movieData';
 
 function App() {
 	const [movie, setMovie] = useState<movieData | undefined>(undefined)
-	const [imageLoaded, setImageLoaded] = useState(false);
-	const [isMovieVisible, setIsMovieVisible] = useState(true);
-	useEffect(() => {
-		if (movie) {
-			const image = new Image();
-			image.src = movie.poster;
-			image.onload = () => {
-				setImageLoaded(true);
-			};
-		}
-	}, [movie]);
-
+	const [isMovieVisible, setIsMovieVisible] = useState(true)
 	const drawMovie = () => {
 		setIsMovieVisible(false)
 		setMovie(undefined)
 			axios
 				.get('http://localhost:3030/roll-movie')
 				.then((res) => {
-					// setMovie(() => res.data);
-					setTimeout(() => showResult(res.data), 1500);
+					setTimeout(() => showResult(res.data), 2200);
 					console.log(res.data, res.data.title)
 				})
 				.catch((err) => {
@@ -52,9 +36,7 @@ function App() {
 		{movie && (
         <div className="movie">
 			<h2>{movie.title}</h2>
-			{imageLoaded && (
-              <img src={movie.poster} alt={movie.title} style={{ width: '320px', height: '480px' }} />
-            )}
+              <img src={movie.poster} alt={movie.title} style={{ width: '320px', height: '480px' }} title={movie.overview}/>
         </div>
       )}
 		<FontAwesomeIcon icon={faDice} className='drawnBtn' onClick={drawMovie} style={{ color: '#dcdde0', width: '30px' }} />

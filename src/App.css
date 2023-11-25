@@ -13,9 +13,9 @@
   }
 
 .drawnBtn {
-	transform: scale(3);
+	transform: scale(3.4);
 	position: fixed;
-	bottom: 25%;
+
 }
 
 .drawnBtn:hover {
@@ -28,261 +28,68 @@
 h1 {
 	font-family: 'ShowtimeFont', sans-serif;
 	font-size: 3.15rem;
+	background-color: inherit;
 }
 
 h2 {
-	font-family: 'Times New Roman', Times, serif;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-size: 1.75rem;
-	text-decoration: underline;
+	margin-bottom: 0;
 }
 
 img {
+	margin-top:0;
 	-webkit-box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
 	-moz-box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
 	box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
 }
 
-/*
+/* Media Query */
 
-/* Dice styling */
-
-:root {
-    --face-size: 45px;
-    --dot-size: calc(var(--face-size) * 0.225);
-    background-color: rgba(175, 175, 175, 0.25);
+@media (max-width: 2560px) {
+	.App {
+		padding-top: 1%;
+		gap: 0.5em;
+	}
+	.drawnBtn {
+		bottom: 7%;
+		transform: scale(2.75);
+	}
+	img {
+		transform: scale(0.8);
+	}
+	h1 {
+		font-size: 3.1rem;
+	}
+	h2 {
+		font-size: 1.5rem;
+	}
 }
 
-/* Set perspective in wrapper */
-
-#perspective {
-    position: absolute;
-    perspective: 2000px;
+@media (max-height: 1324px) {
+	.drawnBtn {
+		bottom: 20%;
+	}
+	img {
+		transform: scale(0.9);
+	}
 }
 
-/* Create spin animation */
-
-@keyframes spin {
-    from {
-        transform: rotateX(0deg) rotateY(0deg);
-    }
-
-    to {
-        transform: rotateX(360deg) rotateY(720deg);
-    }
+@media (max-width: 1024px) {
+	.drawnBtn {
+		bottom: 7%;
+	}
+	img {
+		transform: scale(0.9);
+	}
 }
+@media (max-width: 600px) {
+	.drawnBtn {
+		bottom: 10%;
+		transform: scale(3.5)
+	}
+	img {
+		transform: scale(0.8);
+	}
 
-/* Set die style */
-
-.perspective {
-	z-index: 1000;
-	position: absolute;
-	margin-top: 28rem;
-	text-align: center;
-	position: absolute;
-    perspective: 2000px;
-	transform: translateX(-22.5px);
-}
-
-.die {
-    position: absolute;
-
-    width: var(--face-size);
-    height: var(--face-size);
-
-    transform-style: preserve-3d;
-
-    animation: spin 4s linear 3s infinite;
-}
-
-/* Stop animation when hovering over die */
-
-.die:hover {
-    animation-play-state: paused;
-}
-
-/* Set die face style */
-
-.face {
-    position: absolute;
-
-    font-size: 40px;
-
-    width: var(--face-size);
-    height: var(--face-size);
-
-    text-align: center;
-    line-height: var(--face-size);
-
-    border: 1px solid black;
-
-    transform-style: preserve-3d;
-
-    background-color: black;
-}
-
-/* Highlight face when hovering over die */
-
-.face:hover {
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
-/* Position face 1 and dots */
-
-.face-1 {
-    transform: translateZ(calc(var(--face-size) / -2)) rotateY(180deg);
-}
-
-.face-1 > .dot {
-    left: 50%;
-    top: 50%;
-}
-
-/* Position face 2 and dots */
-
-.face-2 {
-    transform: translateX(50%) rotateY(90deg);
-}
-
-.face-2 > .dot:nth-child(1) {
-    left: 25%;
-    top: 50%;
-}
-
-.face-2 > .dot:nth-child(1) {
-    left: 25%;
-    top: 50%;
-}
-
-.face-2 > .dot:nth-child(2) {
-    left: 75%;
-    top: 50%;
-}
-
-/* Position face 3 and dots */
-
-.face-3 {
-    transform: translateX(-50%) rotateY(-90deg);
-}
-
-.face-3 > .dot:nth-child(1) {
-    left: 25%;
-    top: 25%;
-}
-
-.face-3 > .dot:nth-child(2) {
-    left: 50%;
-    top: 50%;
-}
-
-.face-3 > .dot:nth-child(3) {
-    left: 75%;
-    top: 75%;
-}
-
-/* Position face 4 and dots */
-
-.face-4 {
-    transform: translateY(50%) rotateX(90deg);
-}
-
-.face-4 > .dot:nth-child(1) {
-    left: 25%;
-    top: 25%
-}
-
-.face-4 > .dot:nth-child(2) {
-    left: 75%;
-    top: 25%
-}
-
-.face-4 > .dot:nth-child(3) {
-    left: 25%;
-    top: 75%
-}
-
-.face-4 > .dot:nth-child(4) {
-    left: 75%;
-    top: 75%
-}
-
-/* Position face 5 and dots */
-
-.face-5 {
-    transform: translateY(-50%) rotateX(-90deg);
-}
-
-.face-5 > .dot:nth-child(1) {
-    left: 25%;
-    top: 25%
-}
-
-.face-5 > .dot:nth-child(2) {
-    left: 75%;
-    top: 25%
-}
-
-.face-5 > .dot:nth-child(3) {
-    left: 25%;
-    top: 75%
-}
-
-.face-5 > .dot:nth-child(4) {
-    left: 75%;
-    top: 75%
-}
-
-.face-5 > .dot:nth-child(5) {
-    left: 50%;
-    top: 50%
-}
-
-/* Position face 6 and dots */
-
-.face-6 {
-    transform: translateZ(calc(var(--face-size) / 2));
-}
-
-.face-6 > .dot:nth-child(1) {
-    left: 25%;
-    top: 25%
-}
-
-.face-6 > .dot:nth-child(2) {
-    left: 75%;
-    top: 25%
-}
-
-.face-6 > .dot:nth-child(3) {
-    left: 25%;
-    top: 50%
-}
-
-.face-6 > .dot:nth-child(4) {
-    left: 75%;
-    top: 50%
-}
-
-.face-6 > .dot:nth-child(5) {
-    left: 25%;
-    top: 75%
-}
-
-.face-6 > .dot:nth-child(6) {
-    left: 75%;
-    top: 75%
-}
-
-/* Set dot style */
-
-.dot {
-    position: absolute;
-
-    width: var(--dot-size);
-    height: var(--dot-size);
-
-    border-radius: 50%;
-
-    background-color: white;
-
-    transform: translate(-50%, -50%);
 }

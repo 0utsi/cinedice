@@ -1,6 +1,12 @@
-const Dice = ({opacity}) => {
+import './dice.css'
 
-	return <div className="perspective" style={{ opacity}}>
+interface DiceProps {
+	opacity: number;
+}
+
+const Dice: React.FC<DiceProps> = ({opacity}) => {
+
+	return <div className="perspective" style={{ opacity }}>
 				<div id="die-1" className="die">
 					<div className="face face-1">
 						<div className="dot"></div>
