@@ -14,9 +14,10 @@ function App() {
 	const [movie, setMovie] = useState<movieData | undefined>(undefined)
 	const [isMovieVisible, setIsMovieVisible] = useState(true)
 	const [isAccordionExpanded, setAccordionExpanded] = useState(false);
-	const [dateFrom, setDateFrom] = useState('1920-01-01');
+	const [dateFrom, setDateFrom] = useState('1921-01-20');
 	const [dateTo, setDateTo] = useState('2023-10-10');
 	const [dontLike, setDontLike] = React.useState<string[]>([]);
+
 	const drawMovie = () => {
 		setIsMovieVisible(false);
 		setMovie(undefined);
@@ -50,15 +51,7 @@ function App() {
 		);
 	};
 
-	const handleDateFromChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setDateFrom(event.target.value);
-	};
-
-	const handleDateToChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setDateTo(event.target.value);
-	};
-
-  return (
+return (
     <>
 	<div className="App">
 		<h1>CineDice</h1>
@@ -66,35 +59,49 @@ function App() {
 		{movie && (
         <div className="movie">
 			<h2>{movie.title}</h2>
-				<img src={movie.poster} alt={movie.title} style={{ width: '320px', height: '480px' }} title={movie.overview} />
+				<img src={movie.poster} alt={movie.title} title={movie.overview}/>
 				<span className="date">{movie.release_date}</span>
         </div>
       )}
-		<FontAwesomeIcon icon={faDice} className='drawnBtn' onClick={drawMovie} style={{ color: '#dcdde0', width: '30px' }} />
+		<FontAwesomeIcon icon={faDice} className='drawnBtn' onClick={drawMovie} style={{ color: '#dcdde0'}} />
 		<div className="optionals">
-			<Accordion expanded={isAccordionExpanded} onChange={handleAccordionChange}  sx={{borderRadius: 5, overflow: 'hidden', marginBottom: 0.5, flexDirection: 'column-reverse', width: '17rem', color: 'white', backgroundColor: '#520e0e', opacity: '0.7' }}  >
+			<Accordion expanded={isAccordionExpanded} onChange={handleAccordionChange}  sx={{marginBottom: 0.5, flexDirection: 'column-reverse', width: '17rem', color: 'white', backgroundColor: '#520e0e', opacity: '0.7' }}  >
 				<AccordionSummary expandIcon={<svg height="24" className='expandIco' viewBox="0 0 24 24" width="24"><path  d="M0 0h24v24H0z" fill="none"/><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg>} id="panel1a-header">
 					<Typography style={{ color: 'white', margin: 0, padding: 0}}>Optionals</Typography>
 				</AccordionSummary>
-			<AccordionDetails style={{ color: 'white', zIndex: 1000, padding: 1, margin: 1, position: 'relative', marginTop: -25}}  >
+			<AccordionDetails style={{ color: 'white', zIndex: 1000, padding: 1, margin: 1, marginTop: -35}}  >
 					<Select
-						className='select'
 						multiple
 						value={dontLike}
-						style={{ color: 'white', width: '100%', height: '2rem', marginBottom: '20px', fontSize: '12px', marginTop: 0}}
-						sx={{ input: { color: 'white', fontSize: '11px' },
+						style={{ color: 'white', width: '100%', height: '2rem', marginBottom: '10px', fontSize: '12px', marginTop: 0, textAlign: 'center'}}
+						sx={{ input: { color: 'white' },
 							"& .MuiOutlinedInput-notchedOutline": {
-							border: "1px solid white",
+							borderBottom: "1px solid white",
 							},
 							"&.Mui-focused": {
 							"& .MuiOutlinedInput-notchedOutline": {
-							border: "1px solid white"
+							borderBottom: "1px solid white"
 							}
-						} }}
+							},
+						}}
+						MenuProps={{
+							PaperProps: {
+								sx: {
+								bgcolor: '#751616',
+								'& .MuiMenuItem-root': {
+									padding: 0,
+									color: "white",
+								},
+								},
+							},
+						}}
 						onChange={handleChange}
 						renderValue={(selected) => selected.join(', ')}
 						input={<OutlinedInput />}
 					>
+					<MenuItem disabled hidden value="">
+						<em>I DON'T LIKE:</em>
+					</MenuItem>
 					{genres.map((genre) => (
 						<MenuItem
 							key={genre.id}
@@ -113,15 +120,15 @@ function App() {
 							style={{ width: '50%'}}
 							sx={{ input: { color: 'white', fontSize: '11px' },
 								"& .MuiOutlinedInput-notchedOutline": {
-									border: "1px solid white",
+									borderBottom: "1px solid white",
 							},
 								"&.Mui-focused": {
 								"& .MuiOutlinedInput-notchedOutline": {
-									border: "1px solid white",
-							}
+									borderBottom: "1px solid white",
+									}
 							} }}
 							value={dateFrom}
-							onChange={handleDateFromChange}
+							onChange={(e) => setDateFrom(e.target.value)}
 						/>
 						<span className="fromTo">-</span>
 						<TextField
@@ -131,15 +138,15 @@ function App() {
 							style={{  width: '50%'}}
 							sx={{ input: { color: 'white', fontSize: '11px' },
 								"& .MuiOutlinedInput-notchedOutline": {
-									border: "1px solid white",
+									borderBottom: "1px solid white",
 							},
 								"&.Mui-focused": {
 								"& .MuiOutlinedInput-notchedOutline": {
-									border: "1px solid white",
-								}
+									borderBottom: "1px solid white",
+									}
 							} }}
 							value={dateTo}
-							onChange={handleDateToChange}
+							onChange={(e) => setDateTo(e.target.value)}
 						/>
 					</div>
 			</AccordionDetails>
