@@ -75,19 +75,15 @@ return (
 						value={dontLike}
 						style={{ color: 'white', width: '100%', height: '2rem', marginBottom: '10px', fontSize: '12px', marginTop: 0, textAlign: 'center'}}
 						sx={{ input: { color: 'white' },
-							"& .MuiOutlinedInput-notchedOutline": {
-							borderBottom: "1px solid white",
-							},
-							"&.Mui-focused": {
-							"& .MuiOutlinedInput-notchedOutline": {
-							borderBottom: "1px solid white"
-							}
-							},
-						}}
+						"& .MuiSelect-icon": {
+							color: 'white',
+							transform: 'rotate(180deg)',
+						},}}
 						MenuProps={{
 							PaperProps: {
 								sx: {
 								bgcolor: '#751616',
+								height: '40rem',
 								'& .MuiMenuItem-root': {
 									padding: 0,
 									color: "white",
@@ -99,8 +95,8 @@ return (
 						renderValue={(selected) => selected.join(', ')}
 						input={<OutlinedInput />}
 					>
-					<MenuItem disabled hidden value="">
-						<em>I DON'T LIKE:</em>
+					<MenuItem disabled hidden value="" >
+						<em>___I DON'T LIKE:</em>
 					</MenuItem>
 					{genres.map((genre) => (
 						<MenuItem
@@ -118,15 +114,7 @@ return (
 							variant="outlined"
 							size="small"
 							style={{ width: '50%'}}
-							sx={{ input: { color: 'white', fontSize: '11px' },
-								"& .MuiOutlinedInput-notchedOutline": {
-									borderBottom: "1px solid white",
-							},
-								"&.Mui-focused": {
-								"& .MuiOutlinedInput-notchedOutline": {
-									borderBottom: "1px solid white",
-									}
-							} }}
+							sx={{ input: { color: 'white', fontSize: '11px' }}}
 							value={dateFrom}
 							onChange={(e) => setDateFrom(e.target.value)}
 						/>
@@ -136,15 +124,7 @@ return (
 							variant="outlined"
 							size="small"
 							style={{  width: '50%'}}
-							sx={{ input: { color: 'white', fontSize: '11px' },
-								"& .MuiOutlinedInput-notchedOutline": {
-									borderBottom: "1px solid white",
-							},
-								"&.Mui-focused": {
-								"& .MuiOutlinedInput-notchedOutline": {
-									borderBottom: "1px solid white",
-									}
-							} }}
+							sx={{ input: { color: 'white', fontSize: '11px' }}}
 							value={dateTo}
 							onChange={(e) => setDateTo(e.target.value)}
 						/>

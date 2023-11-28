@@ -94,6 +94,11 @@ svg{
     fill: white;
 }
 
+.MuiMenuItem-root {
+	font-size: 14px; /* Dostosuj wielkość czcionki według potrzeb */
+	/* Inne style dla opcji */
+  }
+
 /* Media query */
 
 @media (max-width: 500px) {
