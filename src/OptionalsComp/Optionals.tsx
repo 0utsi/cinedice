@@ -6,38 +6,36 @@ import {
   Typography,
   Select,
   MenuItem,
-  SelectChangeEvent,
   OutlinedInput,
   TextField,
   Checkbox,
   ListItemText
 } from '@mui/material';
 import genres from '../assets/genres.json';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
+import { MovieDataCtx } from '../providers/ApiContext';
 
 const Optionals = () => {
 		const [isAccordionExpanded, setAccordionExpanded] = useState(false);
-		const [dateFrom, setDateFrom] = useState('1921-01-20');
-		const [dateTo, setDateTo] = useState('2023-10-10');
-		const [dontLike, setDontLike] = React.useState<number[]>([]);
+		const { setFilters } = useContext(MovieDataCtx);
+		const [ excludedGenres, setExcludedGenres ] = React.useState<number[]>([]);
+		const [ dateTo, setDateTo ] = useState(2023);
+		const [ dateFrom, setDateFrom] = useState(1921);
+
+		useEffect(() => {
+			setFilters({
+				excludedGenres: excludedGenres,
+				releaseYearRange: { start: dateFrom, end: dateTo}
+			})
+
+			console.log(excludedGenres, dateFrom, dateTo)
+
+		}, [excludedGenres, dateFrom, dateTo, setFilters])
 
 		const handleAccordionChange = () => {
 			setAccordionExpanded(!isAccordionExpanded);
 
-		};
-		const handleChange = (event: SelectChangeEvent<number[]>) => {
-			const {
-			target: { value },
-			} = event;
-
-			const selectedValues = Array.isArray(value)
-			? value.map((val) => Number(val))
-			: [Number(value)];
-
-			const limitedSelection = selectedValues.slice(0, 10);
-			console.log(limitedSelection)
-			setDontLike(limitedSelection);
 		};
 
 		const mapIdToGenre = (id: number): string => {
@@ -48,21 +46,21 @@ const Optionals = () => {
 		const handleDateFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			const selectedDate = new Date(e.target.value);
 			const minDate = new Date('1921-01-20');
-			const maxDate = new Date(dateTo);
+			const maxDate = new Date(dateTo || '2023-10-10');
 
 			if (
 				selectedDate >= minDate &&
 				selectedDate <= maxDate &&
 				selectedDate.getFullYear() + 1 <= maxDate.getFullYear()
 			) {
-				setDateFrom(selectedDate.toISOString().split('T')[0]);
+				const selectedYear = selectedDate.getFullYear()
+				setDateFrom(selectedYear);
 			}
-
 		};
 
 		const handleDateToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			const selectedDate = new Date(e.target.value);
-			const minDate = new Date(dateFrom);
+			const minDate = new Date(dateFrom || '1921-01-20');
 			const maxDate = new Date('2023-10-10');
 
 			if (
@@ -70,10 +68,19 @@ const Optionals = () => {
 				selectedDate <= maxDate &&
 				selectedDate.getFullYear() >= minDate.getFullYear() + 1
 			) {
-				console.log(selectedDate.toISOString().split('T')[0])
-				setDateTo(selectedDate.toISOString().split('T')[0]);
+				const selectedYear = selectedDate.getFullYear()
+				setDateTo(selectedYear);
 			}
 		};
+
+		const handleSelectChange = (selected: Array<number>) => {
+			setExcludedGenres(selected);
+		};
+
+		const yearToDate = (year: number) => {
+			const date = year + '-01-01';
+			return date
+		}
 
   return (
     <div className="optionals">
@@ -112,7 +119,7 @@ const Optionals = () => {
         >
           <Select
             multiple
-            value={dontLike}
+            value={excludedGenres}
             style={{
               color: 'white',
               width: '100%',
@@ -141,7 +148,7 @@ const Optionals = () => {
                 },
               },
             }}
-            onChange={handleChange}
+            onChange={(e) => handleSelectChange(e.target.value as Array<number>)}
 			renderValue={(selected: Array<number>) => selected.map((id) => mapIdToGenre(id)).join(', ') }
             input={<OutlinedInput />}
           >
@@ -152,7 +159,7 @@ const Optionals = () => {
             </MenuItem>
             {genres.map((genre) => (
               <MenuItem key={genre.id} value={genre.id}>
-                <Checkbox checked={dontLike.indexOf(genre.id) > -1} />
+                <Checkbox checked={excludedGenres.indexOf(genre.id) > -1} />
                 <ListItemText primary={genre.name} />
               </MenuItem>
             ))}
@@ -164,7 +171,7 @@ const Optionals = () => {
               size="small"
               style={{ width: '50%' }}
               sx={{ input: { color: 'white', fontSize: '11px' } }}
-              value={dateFrom}
+              value={yearToDate(dateFrom)}
               onChange={handleDateFromChange}
             />
             <span className="fromTo">-</span>
@@ -174,7 +181,7 @@ const Optionals = () => {
               size="small"
               style={{ width: '50%' }}
               sx={{ input: { color: 'white', fontSize: '11px' } }}
-              value={dateTo}
+              value={yearToDate(dateTo)}
               onChange={handleDateToChange}
             />
           </div>
