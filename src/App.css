@@ -103,14 +103,17 @@ svg{
 
 @media (max-width: 500px) {
 	.drawnBtn {
-		bottom: 18%;
+		bottom: 12%;
 	}
 	img {
-		width:256px;
-		height: 340px;
+		width: 204px;
+		height: 315px;
 	}
 	h2 {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
+	}
+	h1 {
+		font-size: 2.3rem;
 	}
 }
 
