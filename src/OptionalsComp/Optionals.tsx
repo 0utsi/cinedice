@@ -32,7 +32,7 @@ const Optionals = () => {
 
 			console.log(excludedGenres, dateFrom, dateTo)
 
-		}, [excludedGenres, dateFrom, dateTo])
+		}, [excludedGenres, dateFrom, dateTo, setFilters])
 
 		const handleAccordionChange = () => {
 			setAccordionExpanded(!isAccordionExpanded);

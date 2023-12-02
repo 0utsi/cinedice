@@ -7,7 +7,7 @@ interface DataContextProps {
   movieData?: MovieData | undefined;
   filters: {
 		excludedGenres: number[],
-		releaseYearRange: { start: string, end: string}
+		releaseYearRange: { start: string, end: string }
   };
   setFilters: React.Dispatch<React.SetStateAction<{
 		excludedGenres: number[],
@@ -44,7 +44,7 @@ const MovieDataCtx = createContext<DataContextProps>({
 		setMovieData(undefined);
 		console.log(filters)
 		axios
-			.post('http://localhost:3030/movies', filters)
+			.post('https://cinedice.cyclic.app/movies', filters)
 			.then((res) => {
 				setTimeout(() => showResult(res.data), 600);
 			})

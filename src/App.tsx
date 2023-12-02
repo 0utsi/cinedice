@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
 import Optionals from './OptionalsComp/Optionals';
-import MovieDisplay from './movieDisplayComp/movieDisplay'
+import MovieDisplay from './MovieDisplayComp/MovieDisplay'
 import { MovieDataCtx } from './providers/ApiContext';
 
 function App() {
