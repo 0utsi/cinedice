@@ -15,23 +15,24 @@ import genres from '../assets/genres.json';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import { MovieDataCtx } from '../providers/ApiContext';
+import { format } from 'date-fns';
 
 const Optionals = () => {
 		const [isAccordionExpanded, setAccordionExpanded] = useState(false);
 		const { setFilters } = useContext(MovieDataCtx);
 		const [ excludedGenres, setExcludedGenres ] = React.useState<number[]>([]);
-		const [ dateTo, setDateTo ] = useState(2023);
-		const [ dateFrom, setDateFrom] = useState(1921);
+		const [ dateTo, setDateTo ] = useState('2023-10-10');
+		const [ dateFrom, setDateFrom] = useState('1921-01-20');
 
 		useEffect(() => {
 			setFilters({
 				excludedGenres: excludedGenres,
-				releaseYearRange: { start: dateFrom, end: dateTo}
+				releaseYearRange: {start: dateFrom, end: dateTo}
 			})
 
 			console.log(excludedGenres, dateFrom, dateTo)
 
-		}, [excludedGenres, dateFrom, dateTo, setFilters])
+		}, [excludedGenres, dateFrom, dateTo])
 
 		const handleAccordionChange = () => {
 			setAccordionExpanded(!isAccordionExpanded);
@@ -53,8 +54,8 @@ const Optionals = () => {
 				selectedDate <= maxDate &&
 				selectedDate.getFullYear() + 1 <= maxDate.getFullYear()
 			) {
-				const selectedYear = selectedDate.getFullYear()
-				setDateFrom(selectedYear);
+				const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+				setDateFrom(formattedDate);
 			}
 		};
 
@@ -68,19 +69,15 @@ const Optionals = () => {
 				selectedDate <= maxDate &&
 				selectedDate.getFullYear() >= minDate.getFullYear() + 1
 			) {
-				const selectedYear = selectedDate.getFullYear()
-				setDateTo(selectedYear);
+				const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+				setDateTo(formattedDate);
 			}
 		};
+
 
 		const handleSelectChange = (selected: Array<number>) => {
 			setExcludedGenres(selected);
 		};
-
-		const yearToDate = (year: number) => {
-			const date = year + '-01-01';
-			return date
-		}
 
   return (
     <div className="optionals">
@@ -171,7 +168,7 @@ const Optionals = () => {
               size="small"
               style={{ width: '50%' }}
               sx={{ input: { color: 'white', fontSize: '11px' } }}
-              value={yearToDate(dateFrom)}
+              value={dateFrom}
               onChange={handleDateFromChange}
             />
             <span className="fromTo">-</span>
@@ -181,7 +178,7 @@ const Optionals = () => {
               size="small"
               style={{ width: '50%' }}
               sx={{ input: { color: 'white', fontSize: '11px' } }}
-              value={yearToDate(dateTo)}
+              value={dateTo}
               onChange={handleDateToChange}
             />
           </div>

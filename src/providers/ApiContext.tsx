@@ -7,13 +7,13 @@ interface DataContextProps {
   movieData?: MovieData | undefined;
   filters: {
 		excludedGenres: number[],
-		releaseYearRange: { start: number, end: number}
+		releaseYearRange: { start: string, end: string}
   };
   setFilters: React.Dispatch<React.SetStateAction<{
 		excludedGenres: number[],
 		releaseYearRange: {
-			start: number,
-			end: number
+			start: string,
+			end: string
 		}
 	}>>;
   getRandomMovie: () => void;
@@ -22,7 +22,7 @@ interface DataContextProps {
 
 const MovieDataCtx = createContext<DataContextProps>({
 		movieData: undefined,
-		filters: { excludedGenres: [], releaseYearRange: { start: 1921, end: 2023} },
+		filters: { excludedGenres: [], releaseYearRange: { start: '1921-01-01', end: '2023-10-10'} },
 		setFilters: () => {},
 		getRandomMovie: () => {},
 		isMovieVisible: false,
@@ -33,10 +33,10 @@ const MovieDataCtx = createContext<DataContextProps>({
 	const [isMovieVisible, setIsMovieVisible] = useState(true);
 	const [filters, setFilters] = useState<{
 		excludedGenres: number[];
-		releaseYearRange: { start: number; end: number };
+		releaseYearRange: { start: string; end: string };
 	}>({
 		excludedGenres: [],
-		releaseYearRange: { start: 1921, end: 2023 },
+		releaseYearRange: { start: '1921-01-01', end: '2023-10-10' },
 	});
 
 	const getRandomMovie = () => {
