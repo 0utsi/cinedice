@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import Dice from "../DiceComp/Dice"
-import { MovieDataCtx } from "../providers/ApiContext"
+import Dice from "../../DiceComp/Dice"
+import { MovieDataCtx } from "../../providers/ApiContext"
 
 const MovieDisplay = () => {
 
