@@ -1,4 +1,4 @@
-import '../App.css'
+import '../../App.css'
 import {
   Accordion,
   AccordionSummary,
@@ -11,10 +11,10 @@ import {
   Checkbox,
   ListItemText
 } from '@mui/material';
-import genres from '../assets/genres.json';
+import genres from '../../assets/genres.json';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
-import { MovieDataCtx } from '../providers/ApiContext';
+import { MovieDataCtx } from '../../providers/ApiContext';
 import { format } from 'date-fns';
 
 const Optionals = () => {
