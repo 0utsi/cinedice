@@ -1,4 +1,4 @@
-import '../App.css'
+import './Movie.css'
 import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,7 @@ function Movie() {
 
 return (
 
-		<div className="App">
+		<div className="Music">
 			<h1>CineDice</h1>
 			<MovieDisplay />
 			<FontAwesomeIcon icon={faDice} className='drawnBtn' onClick={getRandomMovie}/>

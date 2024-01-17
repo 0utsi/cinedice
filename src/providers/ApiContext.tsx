@@ -28,7 +28,7 @@ const MovieDataCtx = createContext<DataContextProps>({
 		isMovieVisible: false,
 });
 
-	export function GetRandomMovieProvider({ children }: { children: React.ReactNode }) {
+export function GetRandomMovieProvider({ children }: { children: React.ReactNode }) {
 	const [movieData, setMovieData] = useState<MovieData | undefined>();
 	const [isMovieVisible, setIsMovieVisible] = useState(true);
 	const [filters, setFilters] = useState<{
