@@ -1,13 +1,25 @@
-import Movie from './Movie/Movie';
+import {Routes, Route} from "react-router-dom";
 import { GetRandomMovieProvider } from './providers/ApiContext';
+import Movie from './Movie/Movie';
+import Music from './Music/Music';
+import Select from './Select/Select';
+
 function App() {
 
 
 return (
     <>
-		<GetRandomMovieProvider>
-			<Movie />
-		</GetRandomMovieProvider>
+		<Routes>
+			<Route path="/" element={<Select />} />
+
+				<Route path="/movie" element={
+						<GetRandomMovieProvider>
+							<Movie />
+						</GetRandomMovieProvider>
+				} />
+
+				<Route path="/music" element={<Music />} />
+		</Routes>
     </>
   )
 }

@@ -89,8 +89,8 @@ const Optionals = () => {
           flexDirection: 'column-reverse',
           width: '17rem',
           color: 'white',
-          backgroundColor: '#520e0e',
-          opacity: '0.7'
+          backgroundColor: '#261f1f',
+          opacity: '0.5'
         }}
       >
         <AccordionSummary
