@@ -4,7 +4,27 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
+	gap: 4rem;
 	text-align: center;
 	justify-content: center;
+}
+
+a {
+	font-size: 3rem;
+	color: white;
+	opacity: 0.75;
+}
+
+a:nth-child(1) {
+	font-family: 'ShowtimeFont', sans-serif;
+}
+a:nth-child(2) {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	text-decoration: none;
+	font-size: 2.65rem;
+}
+
+a:hover {
+	opacity: 1;
+	transition: 0.3s;
 }

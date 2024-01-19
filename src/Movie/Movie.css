@@ -94,36 +94,22 @@ svg{
 	/* Inne style dla opcji */
   }
 
+.back-btn {
+	height: 1.5rem;
+	color: white;
+	position: absolute;
+	left: 40%;
+	margin-right: 3rem;
+}
+
+.back-btn:hover {
+	transform: scale(1.25);
+	transition: all 0.5s ease;
+}
+
 /* Media query */
 
-@media (max-width: 500px) {
-	.drawnBtn {
-		bottom: 12%;
-	}
-	img {
-		width: 204px;
-		height: 315px;
-	}
-	h2 {
-		font-size: 1.1rem;
-	}
-	h1 {
-		font-size: 2.3rem;
-	}
-}
 
-@media (min-height: 1200px) {
-	img {
-		width: 320px;
-		height: 480px;
-	}
-	.movie {
-		margin-top: 5rem;
-	}
-	h1 {
-		font-size: 3.4rem;
-	}
-}
 
 @media (max-width: 375px) {
 	.drawnBtn {
@@ -143,5 +129,47 @@ svg{
 		font-size: 1rem;
 	}
 }
+
+@media (max-width: 500px) {
+	.drawnBtn {
+		bottom: 12%;
+	}
+	img {
+		width: calc(204px + 10%);
+		height: calc(315px + 10%);
+	}
+	h2 {
+		font-size: 1.1rem;
+	}
+	h1 {
+		font-size: 2.3rem;
+	}
+	.back-btn {
+		left: 5%;
+		top: 2%;
+	}
+
+}
+
+@media (max-width: 1000px) {
+	.back-btn {
+		left: 10%;
+		top: 4%;
+	}
+ }
+
+@media (min-height: 1200px) {
+	img {
+		width: 320px;
+		height: 480px;
+	}
+	.movie {
+		margin-top: 5rem;
+	}
+	h1 {
+		font-size: 3.4rem;
+	}
+}
+
 
 /* width: '320px', height: '480px' */

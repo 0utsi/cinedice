@@ -14,7 +14,7 @@ import {
 import genres from '../../assets/genres.json';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
-import { MovieDataCtx } from '../../providers/ApiContext';
+import { MovieDataCtx } from '../../providers/MovieContext';
 import { format } from 'date-fns';
 
 const Optionals = () => {
@@ -76,7 +76,9 @@ const Optionals = () => {
 
 
 		const handleSelectChange = (selected: Array<number>) => {
-			setExcludedGenres(selected);
+			if (selected.length <= 8) {
+				setExcludedGenres(selected);
+			}
 		};
 
   return (
@@ -136,7 +138,7 @@ const Optionals = () => {
             MenuProps={{
               PaperProps: {
                 sx: {
-                  bgcolor: '#751616',
+                  bgcolor: '#080a38',
                   height: '40rem',
                   '& .MuiMenuItem-root': {
                     padding: 0,
@@ -150,13 +152,21 @@ const Optionals = () => {
             input={<OutlinedInput />}
           >
             <MenuItem disabled>
-              <em style={{ textAlign: 'center', width: '100%', fontWeight: 'bold', textDecoration: 'underline' }}>
+              <em style={{ textAlign: 'center', width: '100%', fontWeight: 'bold', textDecoration: 'underline', color: '#bdbfff' }}>
                 I DON'T LIKE:
               </em>
             </MenuItem>
             {genres.map((genre) => (
               <MenuItem key={genre.id} value={genre.id}>
-                <Checkbox checked={excludedGenres.indexOf(genre.id) > -1} />
+                <Checkbox
+					checked={excludedGenres.indexOf(genre.id) > -1}
+					sx={{
+						color: 'white',  // Kolor ikony, gdy nie jest zaznaczony
+						'&.Mui-checked': {
+							color: 'white', // Kolor ikony, gdy jest zaznaczony
+						},
+					}}
+					/>
                 <ListItemText primary={genre.name} />
               </MenuItem>
             ))}

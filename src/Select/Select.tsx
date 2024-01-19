@@ -5,8 +5,8 @@ export default function Select() {
 
 	return (
 		<div className="select">
-			<Link to="/movie">Przejdź do Strony 1</Link>
-			<Link to="/music">Przejdź do Strony 2</Link>
+			<Link to="/movie">CineDice</Link>
+			<Link to="/music">ListenThis</Link>
 		</div>
 	)
 }
