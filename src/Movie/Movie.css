@@ -1,0 +1,175 @@
+
+.Music {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	gap: 0;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+}
+
+.drawnBtn {
+	font-size: 3rem;
+	position: fixed;
+	bottom: 16%;
+}
+
+.drawnBtn:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: all 0.4s;
+	color: white;
+}
+
+.movie {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	gap:0;
+	margin: 0;
+	padding: 0;
+}
+
+.date {
+	margin-top: 5px;
+	font-size: 0.75rem;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.dates{
+	color: white;
+	display: flex;
+	flex: row;
+	gap: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	justify-content: baseline;
+	text-align: center;
+	align-items:center;
+}
+
+.fromTo {
+	font-size: 1.2rem;
+}
+
+
+h1 {
+	font-family: 'ShowtimeFont', sans-serif;
+	font-size: 3.15rem;
+	opacity: 0.95;
+	background-color: inherit;
+}
+
+h2 {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 1.75rem;
+	margin-bottom: 5px;
+}
+
+img {
+	width: 320px;
+	height: 480px;
+	opacity: 0.9;
+	-webkit-box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
+	-moz-box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
+	box-shadow: 0px 0px 42px -2px rgba(86, 94, 154, 1);
+}
+
+.optionals {
+	font-size: 3rem;
+	position: fixed;
+	bottom: 0;
+}
+
+svg{
+    fill: white;
+}
+
+.MuiMenuItem-root {
+	font-size: 14px; /* Dostosuj wielkość czcionki według potrzeb */
+	/* Inne style dla opcji */
+  }
+
+.back-btn {
+	height: 1.5rem;
+	color: white;
+	position: absolute;
+	left: 40%;
+	margin-right: 3rem;
+}
+
+.back-btn:hover {
+	transform: scale(1.25);
+	transition: all 0.5s ease;
+}
+
+/* Media query */
+
+
+
+@media (max-width: 375px) {
+	.drawnBtn {
+		font-size: 2rem;
+	}
+	img {
+		width: calc(176px + 10%);
+		height: calc(265px + 10%);
+	}
+	.movie {
+		margin-top: 1rem;
+	}
+	h1 {
+		font-size: 2.2rem;
+	}
+	h2 {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 500px) {
+	.drawnBtn {
+		bottom: 12%;
+	}
+	img {
+		width: calc(204px + 10%);
+		height: calc(315px + 10%);
+	}
+	h2 {
+		font-size: 1.1rem;
+	}
+	h1 {
+		font-size: 2.3rem;
+	}
+	.back-btn {
+		left: 5%;
+		top: 2%;
+	}
+
+}
+
+@media (max-width: 1000px) {
+	.back-btn {
+		left: 10%;
+		top: 4%;
+	}
+ }
+
+@media (min-height: 1200px) {
+	img {
+		width: 320px;
+		height: 480px;
+	}
+	.movie {
+		margin-top: 5rem;
+	}
+	h1 {
+		font-size: 3.4rem;
+	}
+}
+
+
+/* width: '320px', height: '480px' */
