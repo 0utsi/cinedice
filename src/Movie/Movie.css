@@ -90,8 +90,7 @@ svg{
 }
 
 .MuiMenuItem-root {
-	font-size: 14px; /* Dostosuj wielkość czcionki według potrzeb */
-	/* Inne style dla opcji */
+	font-size: 14px;
   }
 
 .back-btn {
